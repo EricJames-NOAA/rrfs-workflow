@@ -19,6 +19,7 @@ from rocoto_funcs.recenter import recenter
 from rocoto_funcs.mpassit import mpassit
 from rocoto_funcs.upp import upp
 from rocoto_funcs.ioda_bufr import ioda_bufr
+from rocoto_funcs.ioda_airnow import ioda_airnow
 from rocoto_funcs.ioda_mrms_refl import ioda_mrms_refl
 from rocoto_funcs.clean import clean
 from rocoto_funcs.graphics import graphics
@@ -61,6 +62,7 @@ def setup_xml(HOMErrfs, expdir):
         if do_deterministic == "TRUE":
             if os.getenv("DO_IODA", "FALSE").upper() == "TRUE":
                 ioda_bufr(xmlFile, expdir)
+                ioda_airnow(xmlFile, expdir)
             if os.getenv("DO_RADAR_REF", "FALSE").upper() == "TRUE":
                 ioda_mrms_refl(xmlFile, expdir)
             #
@@ -101,6 +103,7 @@ def setup_xml(HOMErrfs, expdir):
         elif do_ensemble == "TRUE":
             if os.getenv("DO_IODA", "FALSE").upper() == "TRUE":
                 ioda_bufr(xmlFile, expdir)
+                ioda_airnow(xmlFile, expdir)
             if os.getenv("DO_RADAR_REF", "FALSE").upper() == "TRUE":
                 ioda_mrms_refl(xmlFile, expdir)
             ungrib_ic(xmlFile, expdir, do_ensemble=True)

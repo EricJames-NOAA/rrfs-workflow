@@ -7,8 +7,8 @@ cpreq=${cpreq:-cpreq}
 cd "${DATA}" || exit 1
 
 # link the prepbufr file
-${cpreq} "${OBSPATH}/HourlyData_${CDATE}.dat" airnow
-${cpreq} "${OBSPATH}/monitoring_site_locations_${PDY}.dat" sites
+${cpreq} "${OBSPATH_AIRNOW}/HourlyData_${CDATE}.dat" airnow
+${cpreq} "${OBSPATH_AIRNOW}/monitoring_site_locations_${PDY}.dat" sites
 
 HOMErdasapp=${HOMErrfs}/sorc/RDASApp/
 ${cpreq} "${HOMErdasapp}"/rrfs-test/IODA/python/bufr2ioda_airnow.py .

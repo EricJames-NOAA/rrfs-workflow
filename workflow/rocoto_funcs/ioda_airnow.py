@@ -15,15 +15,15 @@ def ioda_airnow(xmlFile, expdir):
         cycledefs = 'prod,spinup,spinup2'
     elif num_spinup_cycledef == 3:
         cycledefs = 'prod,spinup,spinup2,spinup3'
-    OBSPATH = os.getenv("OBSPATH", 'OBSPATH_not_defined')
+    OBSPATH_AIRNOW = os.getenv("OBSPATH_AIRNOW", 'OBSPATH_AIRNOW_not_defined')
     # Task-specific EnVars beyond the task_common_vars
     dcTaskEnv = {
         'REFERENCE_TIME': '@Y-@m-@dT@H:00:00Z',
         'YAML_GEN_METHOD': os.getenv('YAML_GEN_METHOD', '1'),
-        'OBSPATH': f'{OBSPATH}'
+        'OBSPATH_AIRNOW': f'{OBSPATH_AIRNOW}'
     }
     # dependencies
-    fpath = f'{OBSPATH}/HourlyData_@Y@m@d@H.dat'
+    fpath = f'{OBSPATH_AIRNOW}/HourlyData_@Y@m@d@H.dat'
 
     timedep = ""
     realtime = os.getenv("REALTIME", "false")
