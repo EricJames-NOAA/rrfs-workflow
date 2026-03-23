@@ -45,6 +45,7 @@ for fhr in "${fhr_all[@]}"; do
     # decide the history files   
     history_file=${UMBRELLA_FCST_DATA}/history.${timestr}.nc
     diag_file=${UMBRELLA_FCST_DATA}/diag.${timestr}.nc
+    init_file=${UMBRELLA_INIT_DATA}/init.nc
     # wait for file available 
     for (( j=0; j < 20; j=j+1)); do
       if [[ -s ${diag_file} ]]; then
@@ -53,9 +54,10 @@ for fhr in "${fhr_all[@]}"; do
       sleep 60s
     done
     # run mpassit
-    if [[ -s "${history_file}" ]] && [[ -s "${diag_file}" ]]; then
+    if [[ -s "${history_file}" ]] && [[ -s "${diag_file}" ]] && [[ -s "${init_file}"]]; then
       ln -sfn "${history_file}" .
       ln -sfn "${diag_file}" .
+      ln -sfn "${init_file}" .
 
       # generate the naemlist on fly
       sed -e "s/@timestr@/${timestr}/" -e "s/@nx@/${nx}/" -e "s/@ny@/${ny}/" -e "s/@dx@/${dx}/" \
